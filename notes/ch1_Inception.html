@@ -49,11 +49,46 @@
 </ul>
 <p>Need to go through the documentation to get hang of this</p>
 <h2 id="2whats-difference-between-library-and-framework">2.What's difference between library and framework?</h2>
-<p><a href="https://www.interviewbit.com/blog/framework-vs-library/">library vs framework</a></p>
+<p><a href="https://www.interviewbit.com/blog/framework-vs-library/">Library vs Framework</a></p>
 <ul>
-<li>library has generally smaller package size</li>
-<li>library lets you control the code flow, unike framework(inversion of control)</li>
-<li>framework are generally built to address end to end development in that particular domain but libraries on the other end are built to address specific use cases.</li>
+<li>Library has generally smaller package size</li>
+<li>Library lets you control the code flow, unike framework(inversion of control)</li>
+<li>Framework are generally built to address end to end development in that particular domain but libraries on the other end are built to address specific use cases.</li>
+</ul>
+<h2 id="3what-is-cdn--why-do-we-use-it">3.What is CDN ? Why do we use it?</h2>
+<p><a href="https://www.youtube.com/watch?v=RI9np1LWzqw">CDN by ByteByte go</a></p>
+<ul>
+<li>At a base level CDN is a collection of servers(aka edge servers | point of presence(PoP)) that caches the original content and brings it close to the user, so it reduces latency.</li>
+<li>Each edge server acts as a reverse proxy with huge content cache.</li>
+<li>Can server users with optimized file formats</li>
+</ul>
+<h2 id="4why-is-react-known-as-react">4.Why is react known as react?</h2>
+<ul>
+<li>Because of it's ability to change the ui based on changes in data.</li>
+</ul>
+<h2 id="5-what-is-crossorigin-in-script-tag">5. What is crossorigin in script tag?</h2>
+<ul>
+<li>The crossorigin attribute sets the mode of the request to an HTTP CORS Request, allows resources from other domain(in this case react lib files)</li>
+<li>crossorigin or crossorigin='anonymous' is same.</li>
+</ul>
+<h2 id="6what-is-diference-between-react-and-reactdom-library-files">6.What is diference between React and ReactDOM library files?</h2>
+<ul>
+<li>'React' lib file is entry point to react library, contains top level APIs like createElement,fragments, hooks etc., that are common across  different implementations of React like Reactnative.</li>
+<li>'ReactDOM' provides DOM specific methods i.e., related to browsers.</li>
+</ul>
+<h2 id="7what-is-difference-between-reactdevelopmentjs-and-reactproductionjs-files-via-cdn">7.What is difference between react.development.js and react.production.js files via CDN?</h2>
+<ul>
+<li>development files are usually large in size but its easy to understand the code, so it is helpful during development cycle.</li>
+<li>production files are minimized(see .min in the cdn links)-&gt; decreases the size of the file which enables to quickly download the files.</li>
+</ul>
+<h2 id="8-what-is-async-and-defer-in-script-tag">8. What is async and defer in script tag?</h2>
+<p><img src="file:////home/mani/projects/namasthey-react/images/async%2Cdefer.png" alt="asyncAnddefer">
+<a href="https://javascript.info/script-async-defer">javascript info script async,defer</a></p>
+<ul>
+<li>both are boolean attributes.</li>
+<li>both are for external scripts..</li>
+<li>async downloads in parallel and executes it when it is available, generally used for prebuilt libs, script order is preservced.</li>
+<li>defer also downloads in parallel but executes it only html is completely rendered to the web page, script order is not present.</li>
 </ul>
 
         
