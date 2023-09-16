@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Namasthey React</title>
+</head>
+
+<body>
+    <div id="root1">
+        <h1>I am here</h1>
+    </div>
+    <div id="root">
+        <!-- Observe that this will be replaced by react. this will be breifly appear in the brwoser window -->
+        <h1>awdawdawd</h1>
+    </div>
+    <div id="root2">
+        <h1>I am also here</h1>
+    </div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="./App.js">
+    </script>
+
+    <script>
+        //Even if I runnning this after react script why is it disappearing?
+        const temp = document.createElement('h1')
+        temp.innerHTML = 'awdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        document.getElementById('root').appendChild(temp)
+    </script>
+</body>
+
+</html>
