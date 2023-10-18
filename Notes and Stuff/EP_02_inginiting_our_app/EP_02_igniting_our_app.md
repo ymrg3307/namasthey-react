@@ -21,7 +21,27 @@
 
 - Build tool we use for our application, it offers many features like minification, development server, hot reloading etc.,
 - .parcel-cache is where parcel stores it's cache, this is automatically rebuilt based on our changes.
-- `npx parcel {index.html}` 
+- There are many other features in parcel like code splitting, minification, differential bundling etc., please refer official parcel documentation for more info.
+- `npx parcel {index.html}` -> start the development with index.html as entry point. if filename is not index.html give complete path in the URL.
+- `npx parcel build index.html` -> build a production build -> if facing error "Target "main" declares an output file path of "App.js" which does not match the compiled bundle type "html" " -> remove "main":'App.js' from package.json
+
+### Features of parcel
+
+- dev build
+- local server
+- HOT Module Replacement(changes in module are auto reflected in browser window)
+- File watcher algorithm
+- caching - faster builds - check .parcel-cache folder
+- image optimization
+- Bundling
+- compress
+- consistent hashing
+- code splitting
+- differential bundling
+- diagnostics
+- error handling
+- Can serve on HTTPS
+- Tree shaking algorithm
 
 ## Tree Shaking in Parcel
 
@@ -35,39 +55,40 @@
 - Hot reloading sometimes does HMR which refreshes the parts of page without reloading it which retains the application state also iproves the dev experience.
 - Read more [here](https://parceljs.org/features/development/#hot-reloading)
 
-> ~ vs ^ in package json dependency versions?
-> What is package-lock.json?
-> Transitive dependencies -> We installed only parcel but it has it own dependencies and those dependencies has thier own dependencies. This is the reason why node modules folder have lot of modules even though we installed only a few.
->How npm resolves all the transitive dependencies?, Observe each module in node modules has it's own package.json file.
-> ***The intituitve question on what and what not to push to github***
-> Why node_modules need not be pushed to github? -> as we can build node modules from package.json and package-lock.json, so to avoid resource wastage we add to gitignore file.
-> Git should have only essential things, don't push to github that those which can be regenerated.
-> https://saturncloud.io/blog/whats-the-difference-between-tilde-and-caret-in-packagejson/#:~:text=In%20summary%2C%20tilde(%20~%20),both%20minor%20and%20patch%20updates.
-> npx parcel index.html
-> npx is for executing package, read more on what is npx
-> CDN links is not a preferred way to bring react into our app, one reason is we need to get it from internet before using it.
-> Browser script cannot have imports and exports error, -> use type='module' instead in script tag
-> index.js:1 Warning: You are importing createRoot from "react-dom" which is not supported. You should instead import it from "react-dom/client".
-> parcel
->   dev build
->   local server
->   HOT Module Replacement(changes in module are auto reflected in browser window)
->   File watcher algorithm
->   caching - faster builds - check .parcel-cache folder
->   image optimization
->   Bundling
->   compress
->   consistent hashing
->   code splitting
->   differential bundling
->   diagnostics
->   error handling
->   Can serve on HTTPS
->   Tree shaking algorithm
+## package.json and package-lock.json
 
->   npx parcel build index.html -> build a production build -> if facing error "Target "main" declares an output file path of "App.js" which does not match the compiled bundle type "html" " remove the "main":'App.js' from package.json
-> browsersList
->
-> Sources:
-> https://www.freecodecamp.org/news/npm-vs-npx-whats-the-difference/
-> https://www.geeksforgeeks.org/what-are-the-differences-between-npm-and-npx/
+- package.json is for maintaining the dependency list at a high level and other project related metadata like name, version, author etc.,
+- package-lock.json is for maintaining the exact versions of dependencies used in our project.
+- when we do `npm install`, npm will first check for the lock file, if found it will install the exact dependencies, if not it goes and checks in **package.json** file.
+- If the package version given in the lockfile is not in the version range of the package.json file, packages are updated & package-lock.json is overwritten.
+- To make installation fail instead of overwriting package-lock.json, use `npm ci`.
+- Never touch/modify the lock file as it is auto generated and used by several dev to maintain a consistent dependency tree.
+- what are those crazy symbols in the package.json file
+  - ~ tells npm to upgrade to patch versions, but not minor and major versions.
+  - ^ tells npm to upgrade to minor and patch versions, but not major versions.
+  - There are many more please check [here](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#dependencies).
+- [A good article on this](https://medium.com/helpshift-engineering/package-lock-json-the-complete-guide-2ae40175ebdd)
+
+## Browserslist
+
+- Main focus is on the question which browsers our app should be targeted to
+- We can build a query according to that using [this](https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25z)
+- Add this in our **package.json** file
+- Parcel will use differential bundling based on this info to generate different versions optimised according to each browser. Read more [here](https://parceljs.org/features/targets/#differential-bundling)
+
+## Misc
+
+- **.gitignore** adding entries like folders and files to this will omit them out git indexing, so git won't track the changes to these files.
+- As we can  build node modules from package.json and package-lock.json, so to avoid resource wastage we add to gitignore file.
+- **dist** folder i.e.,distribution folder contains the transpiled and minimized versions of source code, this is used to serve the actual application.
+- Transitive dependencies -> We installed only parcel but it has it own dependencies and those dependencies has thier own dependencies. This is the reason why node modules folder have lot of modules even though we installed only a few.
+- How npm resolves all the transitive dependencies?, Observe each module in node modules has it's own package.json file.
+- ***The intituitve question on what and what not to push to github***
+- Git should have only essential things, don't push to github that those which can be regenerated.
+- CDN links is not a preferred way to bring react into our app, one reason is we need to get it from internet before using it.
+
+## Sources
+
+- https://www.freecodecamp.org/news/npm-vs-npx-whats-the-difference/
+- https://www.geeksforgeeks.org/what-are-the-differences-between-npm-and-npx/
+- https://blog.bitsrc.io/package-vs-package-lock-json-file-d3b783dbaa95
