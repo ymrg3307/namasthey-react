@@ -76,6 +76,21 @@
 - Add this in our **package.json** file
 - Parcel will use differential bundling based on this info to generate different versions optimised according to each browser. Read more [here](https://parceljs.org/features/targets/#differential-bundling)
 
+## module vs script in JS
+
+- If we want to import a module into html file then we should specify **type='module'** as module uses additional keywords and syntax unless like a regular script.
+- Try importing a file containing import and export statements without type module, parcel will throw an error saying we cant use import/export in classic scripts.
+- Some general features of modules are
+  - scope is per module
+  - a module code is evaluated only the first time when imported
+  - top-level ***this*** is undefined.
+- Some browser specific features are
+  - Module scripts are always deferred, relative order of scripts is maintained.
+  - Async works on inline scripts with type='module' which is not the case in normal scripts, here when async is added the respective script doesn’t wait for anything.
+  - To load external scripts from another origin (domain/protocol/port), CORS headers are needed.
+  - Duplicate external scripts are ignored.
+- In depth intro on features of modules can be found [here](https://javascript.info/modules-intro#core-module-features)
+
 ## Misc
 
 - **.gitignore** adding entries like folders and files to this will omit them out git indexing, so git won't track the changes to these files.
