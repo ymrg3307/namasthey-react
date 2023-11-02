@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "My repo for the Akshay Saini's React web series",
   "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
